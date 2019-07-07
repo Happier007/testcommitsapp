@@ -1,0 +1,33 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">Detail</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body wrap">
+    Author:
+    <ul>
+        <li>name: {{commit.author.name}}</li>
+        <li>email: {{commit.author.email}}</li>
+        <li>date: {{commit.author.date}}</li>
+      </ul>
+
+    Committer:
+    <ul>
+      <li>name: {{commit.committer.name}}</li>
+      <li>email: {{commit.committer.email}}</li>
+      <li>date: {{commit.committer.date}}</li>
+    </ul>
+    
+    <p>Message:<br> 
+    {{commit.message}}</p>
+
+    Tree
+    <ul>
+      <li>sha: {{commit.tree.sha}}</li>
+      <li>url: {{commit.tree.url}}</li>
+    </ul>
+
+    <p>Url:<br> {{commit.url}}</p>
+</div>
+  

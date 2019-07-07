@@ -1,0 +1,32 @@
+<button class="back-btn" (click)="goBack()">go back</button>
+<div *ngIf="list$ | async as list; else notFound">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Date</th>
+        <th scope="col">Message</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor = "let item of list | slice: (page - 1) * countCommits: page * countCommits; let i = index">
+        <th scope="row">{{((page - 1) * 10) + i + 1}}</th>
+        <td>{{item.commit.committer.date | date: 'MM.dd.yyyy hh:mm:ss'}}</td>
+        <td>{{item.commit.message}}</td>
+        <td>
+          <button type="button" class="btn btn-primary" (click)="openModal(item.commit)">
+            detail
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <pagination class="justify-content-center" [totalItems]="list.length" (pageChanged)="pageChanged($event)"></pagination> 
+</div>
+<ng-template #notFound> 
+  <div class="alert alert-secondary" role="alert">
+      User or repository not found!
+  </div>
+</ng-template>
+  
